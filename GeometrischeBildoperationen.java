@@ -115,13 +115,53 @@ public class GeometrischeBildoperationen  extends Bildoperationen
         return neuesBild;
     }
     
-    public void dreheLinks( Picture originalbild) {
+    private PImage dreheLinks( PImage originalbild) {
+        int hoehe = originalbild.height;
+        int breite  = originalbild.width;
+        int breiteNeu = hoehe;
+        int hoeheNeu = breite;
+        
+        int[][] pixel = pixelsExplode(originalbild.pixels, breite, hoehe);
+        int[][] pixelNeu = new int[breiteNeu][hoeheNeu];
+        
+        for(int xNeu = 0; xNeu < breiteNeu; xNeu++){
+            for (int yNeu = 0; yNeu < hoeheNeu; yNeu++){
+                pixelNeu[xNeu][yNeu] = pixel[(breite-1) - yNeu][xNeu];
+            }
+        }
+        PImage neuesBild = originalbild.copy();
+        neuesBild.pixels = pixelsFlatten(pixelNeu);
+        return neuesBild;
+        
+    }
+    
+    public void dreheLinks( Picture originalbild ){
         this.op = OP_DreheLinks;
         originalbild.runOp( this );
     }
+    private PImage dreheRechts( PImage originalbild) {
+        int hoehe = originalbild.height;
+        int breite  = originalbild.width;
+        int breiteNeu = hoehe;
+        int hoeheNeu = breite;
+        
+        int[][] pixel = pixelsExplode(originalbild.pixels, breite, hoehe);
+        int[][] pixelNeu = new int[breiteNeu][hoeheNeu];
+        
+        for(int xNeu = 0; xNeu < breiteNeu; xNeu++){
+            for (int yNeu = 0; yNeu < hoeheNeu; yNeu++){
+                pixelNeu[xNeu][yNeu] = pixel[(hoehe-1)-xNeu][yNeu];
+            }
+        }
+        PImage neuesBild = originalbild.copy();
+        neuesBild.pixels = pixelsFlatten(pixelNeu);
+        return neuesBild;
+        
+    }
     
-    private PImage dreheLinks( PImage originalbild ){
-        return originalbild.copy();
+    public void dreheRechts( Picture originalbild ){
+        this.op = OP_DreheRechts;
+        originalbild.runOp( this );
     }
     
 }
