@@ -17,6 +17,23 @@ public class Beispielzustand
     private GeometrischeBildoperationen sHori;
     private GeometrischeBildoperationen sVerti;
     private GeometrischeBildoperationen dLinks;
+    private Mehrpixeloperationen mehrpixe1;
+    
+    
+    
+    
+    
+
+    
+    
+    
+    
+    
+
+    
+    
+    
+    
 
     /**
      * Konstruktor fuer die Test-Klasse Beispielzustand
@@ -41,6 +58,7 @@ public class Beispielzustand
         sVerti.setOperation(2);
         dLinks = new GeometrischeBildoperationen();
         dLinks.setOperation(3);
+        mehrpixe1 = new Mehrpixeloperationen();
     }
 
     /**
